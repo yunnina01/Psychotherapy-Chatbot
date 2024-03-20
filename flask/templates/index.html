@@ -5,24 +5,20 @@
     <meta charset="UTF-8">
     <title>심리대화치료 챗봇</title>
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <!-- <link href="../static/css/test.css" rel="stylesheet" type="text/css"> -->
+    <style>
+        .chat_content {height: 600px; width: 500px; overflow-y: scroll; padding: 10px 15px; background: salmon}
+        .chat_input {padding: 2px 5px;}
+        .chat_input {padding: 2px 5px;}
+        .chat_header {padding: 10px 15px; border-bottom: 1px solid #95a6b4;}
+        .chat_header .close_btn {border: none; background: none; float: right;}
+        .send_btn {border: 1px solid #666; background: antiquewhite; height: 28px; color: black}
+        .msg_box:after {content: ''; display: block; clear: both;}
+        .msg_box > span {padding: 3px 5px; word-break: break-all; display: block; max-width: 300px; margin-bottom: 10px; border-radius: 4px}
+        .msg_box.send > span {background:#ffeb33; float: right;}
+        .msg_box.receive > span {background: #fff; float: left;}
+    </style>
 </head>
-<style>
-.chat_wrap {display: none; width: 350px; height: 500px; position: fixed; bottom: 30px; right: 95px; background: #a9bdce;}
-/* 배경 */
-.chat_content {height: 600px; width: 500px; overflow-y: scroll; padding: 10px 15px; background: darksalmon}
-/* 입력창 크기 */
-.chat_input {padding: 2px 5px;}
-/* 헤더 줄 */
-.chat_header {padding: 10px 15px; border-bottom: 1px solid #95a6b4;}
-/* 종료 버튼 */
-.chat_header .close_btn {border: none; background: none; float: right;}
-/* 보내기 버튼 */
-.send_btn {border: 1px solid #666; background: antiquewhite; height: 28px; color: black}
-.msg_box:after {content: ''; display: block; clear: both;}
-.msg_box > span {padding: 3px 5px; word-break: break-all; display: block; max-width: 300px; margin-bottom: 10px; border-radius: 4px}
-.msg_box.send > span {background:#ffeb33; float: right;}
-.msg_box.receive > span {background: #fff; float: left;}
-</style>
 <body>
 <div class="chat_header">
     <span>심리대화치료 챗봇</span>
@@ -30,36 +26,60 @@
 </div>
 <div id="divbox" class="chat_content"></div>
 <form id="form" style="display: inline">
-    <input type="text" name="input1" class="chat_input" id="input1" size="74" style="display: inline; width: 460px" />
+    <input type="text" name="user_input" class="chat_input" id="input1" size="74" style="display: inline; width: 410px" />
+    <input type="button" value="움성" id="btn_voice" class="send_btn" style="display: inline; width: 50px"  /> <!---->
     <input type="button" value="입력" id="btn_submit" class="send_btn" style="display: inline; width: 50px"  />
 </form>
 <script>
     $('#btn_submit').click(function () {
         send();
     });
+    $('#btn_voice').click(function() {
+        voice();
+    });
+    function voice(){
+        $.ajax({
+            url: '/voice',
+            type: 'POST',
+            success: function(data) {
+                $('#input1').val(data.response);         // 입력란에 음성 인식 결과 출력
+            },
+            error: function(xhr, status, error) {
+                // 에러 처리
+                console.error("Error: " + error);
+                console.error("Status: " + status);
+            }
+        });
+    }
     $('#form').on('submit', function(e){
        e.preventDefault();
        send();
     });
     $('#close_chat_btn').on('click', function(){
-        $('#chat_wrap').hide().empty();
+        $('.chat_wrap').hide();
     });
     function send(){
-        $('#divbox').append('<div class="msg_box send"><span>'+$('#input1').val()+'<span></div>');
-        $("#divbox").scrollTop($("#divbox")[0].scrollHeight);
-        console.log("serial"+$('form').serialize())
+        var userInput = $('#input1').val(); // 사용자 입력 가져오기
+        $('#divbox').append('<div class="msg_box send"><span>'+ userInput +'</span></div>'); // 사용자 메시지 표시
+        $("#divbox").scrollTop($("#divbox")[0].scrollHeight); // 스크롤 아래로 이동
+
         $.ajax({
-            url:  'http://127.0.0.1:8000/chat_service/', //챗봇 api url
-            type: 'post',
+            url: '/predict', // Flask 라우트 경로로 변경
+            type: 'POST',
+            contentType: 'application/json', // 데이터 타입 JSON으로 설정
             dataType: 'json',
-            data: $('form').serialize(),
+            data: JSON.stringify({user_input: userInput}), // JSON 문자열로 변환
             success: function(data) {
-                <!--$('#reponse').html(data.reponse);-->
-                $('#divbox').append('<div class="msg_box receive"><span>'+ data.response +'<span></div>');
-                $("#divbox").scrollTop($("#divbox")[0].scrollHeight);
+                $('#divbox').append('<div class="msg_box receive"><span>'+ data.response +'</span></div>'); // 서버로부터 받은 응답 표시
+                $("#divbox").scrollTop($("#divbox")[0].scrollHeight); // 스크롤 아래로 이동
+            },
+            error: function(xhr, status, error) {
+                // 에러 처리
+                console.error("Error: " + error);
+                console.error("Status: " + status);
             }
         });
-        $('#input1').val('');
+        $('#input1').val(''); // 입력 필드 초기화
     }
 </script>
 </body>
