@@ -2,9 +2,12 @@ from chatmodel import KoGPT2    # chatmodel 파일의 KoGPT2.py 임포트
 
 from flask import Flask, render_template, jsonify, request
 import speech_recognition as sr
-# from torchvision import models
-# import torch
-# import torchvision.transforms as transforms
+
+# 서버 종료 시 동작 코드
+# import atexit
+
+# def close():
+#    fw.close()
 
 app = Flask(__name__)
 
@@ -12,17 +15,27 @@ localHost = "127.0.0.1"
 serverHost = "0.0.0.0"
 serverPort = "5000"
 
+fw = open("./logs/log.txt", "w")
+
 # 초기 화면 인터페이스 연결
 @app.route("/")
 def index():
     return render_template("index.html")
+
+# 챗봇 화면 연결
+@app.route("/chat")
+def chat():
+    return render_template("chat.html")
 
 # model 예측
 @app.route('/predict', methods=['GET', 'POST'])
 def predict():
     data = request.get_json()  # JSON 데이터로부터 user_input 추출
     question = data['user_input']
+    fw.write(question + "\n")
     response = KoGPT2.generate_response(question, KoGPT2.model, KoGPT2.tokenizer)
+    fw.write(response + "\n")
+    fw.flush()
     return jsonify({"response": response})
 
 # 음성 인식
@@ -38,7 +51,6 @@ def voiceRecognition():
 
     try:
         transcript = recognizer.recognize_google(audio, language="ko-KR")
-        print(transcript)
         return jsonify({"response": transcript})
     except sr.UnknownValueError:
         print("인식할 수 없습니다.")
@@ -47,3 +59,4 @@ def voiceRecognition():
 
 if __name__ == '__main__':
     app.run(host = serverHost, port = serverPort, debug = True)
+    # atexit.register(close)

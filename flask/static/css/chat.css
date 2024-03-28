@@ -1,0 +1,24 @@
+/*
+.chat_wrap {display: none; width: 350px; height: 500px; position: fixed; bottom: 30px; right: 95px; background: #a9bdce;}
+.chat_header {padding: 10px 15px; border-bottom: 1px solid #95a6b4;}
+.chat_header .close_btn {border: none; background: none; float: right;}
+*/
+
+.chat_content {height: 650px; width: 500px; overflow-y: scroll; padding: 10px 15px; background: whitesmoke}
+.chat_input {padding: 2px 5px;}
+.send_btn {border: 1px solid #666; background: antiquewhite; height: 28px; color: black}
+.msg_box:after {content: ''; display: block; clear: both;}
+.msg_box > span {padding: 3px 5px; word-break: break-all; display: block; max-width: 300px; margin-bottom: 10px; border-radius: 4px}
+.msg_box.send > span {background:wheat; float: right;}
+.msg_box.receive > span {background: white; float: left;}
+
+/* 배경 이미지 관련
+body {
+    
+    opacity: 1;
+}
+
+.chat_content {height: 600px; width: 1500px; overflow-y: scroll; padding: 10px 15px;
+                background: url("../img/livingroom.jpg") no-repeat 45%;
+                background-size: contain;}
+*/
