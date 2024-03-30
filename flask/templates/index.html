@@ -4,10 +4,30 @@
     <meta charset="UTF-8">
     <title>심리대화치료 챗봇</title>
     <script src="https://code.jquery.com/jquery-latest.min.js"></script>
+    <link href="../static/css/index.css" rel="stylesheet" type="text/css">
 </head>
 <body>
-<p>심리대화치료 챗봇</p>
-<input type="button" value="시작하기" id="btn_start" />
-<script src="../static/js/index.js"></script>
+    <p id="name" class="bot_name">심리대화치료 챗봇</p>
+    <p id="introduce" class="bot_introduce">편안한 대화를 나눠보세요</p>
+    <div class="btn_pos">
+        <input type="button" id="btn_start" class="btn" value="시작하기" />
+    </div>
+    <div id="caption" class="caption_box">
+        <input type="button" id="btn_chat" class="btn" value="대화시작" />
+    </div>
+
+    <div id="popup_layer" class="popup_layer">
+        <div class="popup_box">
+            <div class="popup_btn">
+                <input type="button" id="popup_close" value="X" />
+            </div>
+            <div class="popup_content">
+                <h2>주의사항</h2>
+                <p>전문적인 진단이나 치료를 위한 목적이 아닌 대화느낌의 상담을 위한 챗봇입니다.</p>
+            </div>
+        </div>
+    </div>
+
+    <script src="../static/js/index.js"></script>
 </body>
 </html>

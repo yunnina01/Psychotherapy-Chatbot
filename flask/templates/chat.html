@@ -7,18 +7,23 @@
     <link href="../static/css/chat.css" rel="stylesheet" type="text/css">
 </head>
 <body>
-<!--
-<div class="chat_header">
-    <span>심리대화치료 챗봇</span>
-    <button type="button" id="close_chat_btn" class="close_btn">X</button>
-</div>
--->
-<div id="divbox" class="chat_content"></div>
-<form id="form" style="display: inline">
-    <input type="text" name="user_input" class="chat_input" id="input1" size="74" style="display: inline; width: 410px" />
-    <input type="button" value="음성" id="btn_voice" class="send_btn" style="display: inline; width: 50px"  />
-    <input type="button" value="입력" id="btn_submit" class="send_btn" style="display: inline; width: 50px"  />
-</form>
-<script src="../static/js/chat.js"></script>
+    <!--
+    <div class="chat_header">
+        <span>심리대화치료 챗봇</span>
+        <button type="button" id="close_chat_btn" class="close_btn">X</button>
+    </div>
+    -->
+
+    <div id="divbox" class="chat_content" style="float: left"></div>
+    <p>상담 지원 센터나 전화번호 등</p>
+    <div style="clear: both;"></div>
+
+    <form id="form" style="display: inline">
+        <input type="text" name="user_input" class="chat_input" id="input" size="80" style="display: inline;" />
+        <input type="button" value="음성" id="btn_voice" class="btn" style="display: inline; width: 50px" />
+        <input type="button" value="입력" id="btn_send" class="btn" style="display: inline; width: 50px" />
+    </form>
+
+    <script src="../static/js/chat.js"></script>
 </body>
 </html>

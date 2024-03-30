@@ -7,15 +7,14 @@ import speech_recognition as sr
 # import atexit
 
 # def close():
-#    fw.close()
+#    logfile.close()
 
 app = Flask(__name__)
 
-localHost = "127.0.0.1"
-serverHost = "0.0.0.0"
-serverPort = "5000"
+HOST = "0.0.0.0"
+PORT = "5000"
 
-fw = open("./logs/log.txt", "w")
+logfile = open("./logs/log.txt", "w")
 
 # 초기 화면 인터페이스 연결
 @app.route("/")
@@ -32,10 +31,10 @@ def chat():
 def predict():
     data = request.get_json()  # JSON 데이터로부터 user_input 추출
     question = data['user_input']
-    fw.write(question + "\n")
+    logfile.write(question + "\n")
     response = KoGPT2.generate_response(question, KoGPT2.model, KoGPT2.tokenizer)
-    fw.write(response + "\n")
-    fw.flush()
+    logfile.write(response + "\n")
+    logfile.flush()
     return jsonify({"response": response})
 
 # 음성 인식
@@ -58,5 +57,5 @@ def voiceRecognition():
         print("인식에 문제가 있습니다.", e)
 
 if __name__ == '__main__':
-    app.run(host = serverHost, port = serverPort, debug = True)
+    app.run(host = HOST, port = PORT, debug = True)
     # atexit.register(close)
