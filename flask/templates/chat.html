@@ -24,6 +24,25 @@
         <input type="button" value="입력" id="btn_send" class="btn" style="display: inline; width: 50px" />
     </form>
 
+    <div id="popup_layer" class="popup_layer">
+        <div id="popup_voice" class="popup_box" style="width: 300px; height: 200px;">
+            <div class="popup_content">
+                <h2>음성 인식 중</h2>
+                <p>말씀해 주세요.</p>
+            </div>
+        </div>
+        <div id="popup_error" class="popup_box" style="width: 400px; height: 235px;">
+            <div class="popup_btn">
+                <input type="button" id="popup_close" value="X" />
+            </div>
+            <div class="popup_content">
+                <h2>음성 인식 오류</h2>
+                <p>음성 인식에 실패했습니다.<br>
+                다시 말씀해 주세요.</p>
+            </div>
+        </div>
+    </div>
+
     <script src="../static/js/chat.js"></script>
 </body>
 </html>

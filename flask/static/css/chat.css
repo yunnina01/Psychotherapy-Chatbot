@@ -1,7 +1,6 @@
 /* 채팅창 배경 */
 .chat_content {
-    height: 650px;
-    width: 500px;
+    width: 500px; height: 670px;
     overflow-y: scroll;
     padding: 10px 15px;
     background: whitesmoke
@@ -52,6 +51,61 @@
 /* 메시지 박스 이후 동작 */
 .msg_box:after {
     content: ''; display: block; clear: both;
+}
+
+
+/* 팝업 레이어 */
+.popup_layer {
+    background-color: rgba(0, 0, 0, 0.3);
+    position: fixed; top: 10px; left: 10px;
+    width: 510px; height: 690px;
+    z-index: 2;
+    display: none;
+}
+
+/* 팝업 박스 */
+.popup_box {
+    background: white;
+    position: relative; top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    overflow: auto;
+    z-index: 1;
+    box-sizing: border-box;
+    box-shadow: 2px 5px 10px 0px rgba(0, 0, 0, 0.35);
+    -webkit-box-shadow: 2px 5px 10px 0px rgba(0, 0, 0, 0.35);
+    -moz-box-shadow: 2px 5px 10px 0px rgba(0, 0, 0, 0.35);
+    border-radius: 10px;
+    display: none;
+}
+
+/* 팝업 박스 컨텐츠 영역 */
+.popup_content {
+    padding: 30px;
+    line-height: 1.3rem;
+    font-size: 15px;
+}
+.popup_content h2 {
+    text-align: center;
+    padding: 15px 0;
+    color: #333;
+    margin: 0;
+}
+.popup_content p {
+    text-align: center;
+    border-top: 1px solid #666;
+    padding-top: 25px;
+}
+
+/* 팝업 박스 닫기 버튼 */
+.popup_btn {
+    height: 10px; width: 400px;
+    float: top; text-align: right;
+}
+.popup_btn input {
+    background-color: white;
+    padding: 10px 15px;
+    width: "30px"; height: "30px";
+    border: none;
 }
 
 /*

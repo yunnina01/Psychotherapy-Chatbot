@@ -31,6 +31,10 @@ function send() {
 // 음성 버튼 클릭 시 동작
 $('#btn_voice').click(function() {
     $(this).attr('disabled', true)      // 음성인식 중 음성 버튼 비활성화
+    setTimeout(function() {             // 음성인식 팝업 지연 실행
+        $('#popup_layer').show();
+        $('#popup_voice').show();
+    }, 400);
     voice();
 });
 function voice() {
@@ -38,16 +42,25 @@ function voice() {
         url: '/voice',
         type: 'POST',
         success: function(data) {
+            $('#popup_layer').hide();
             $('#input').val(data.response);        // 입력란에 음성 인식 결과 출력
             $('#btn_voice').attr('disabled', false)     // 음성 버튼 활성화
         },
         error: function(xhr, status, error) {
+            $('#popup_voice').hide();
+            $('#popup_error').show();
             $('#btn_voice').attr('disabled', false)     // 음성 버튼 활성화
             console.error("Error: " + error);
             console.error("Status: " + status);
         }
     });
 }
+
+// 팝업 닫기 버튼 클릭 시
+$('#popup_close').click(function() {
+    $('#popup_error').hide();
+    $('#popup_layer').hide();
+});
 
 /*
 $('#form').on('submit', function(e) {
