@@ -42,15 +42,23 @@
     float: right;
 }
 
+/* 응답 메시지 박스 아이콘 */
+.msg_box.icon {
+    float: left;
+    clear: both;
+}
+
 /* 응답 메시지 박스 */
 .msg_box.receive > span {
     background: white;
-    float: left;
+    margin-left: 35px;
 }
 
 /* 메시지 박스 이후 동작 */
 .msg_box:after {
-    content: ''; display: block; clear: both;
+    content: '';
+    display: block;
+    clear: both;
 }
 
 

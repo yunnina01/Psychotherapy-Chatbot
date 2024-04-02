@@ -6,7 +6,7 @@ $('#btn_send').click(function() {
 function send() {
     var userInput = $('#input').val();     // 사용자 입력 가져오기
     $('#divbox').append('<div class="msg_box send"><span>'+ userInput +'</span></div>');    // 사용자 메시지 표시
-    $("#divbox").scrollTop($("#divbox")[0].scrollHeight);       // 스크롤 아래로 이동
+    $('#divbox').scrollTop($("#divbox")[0].scrollHeight);       // 스크롤 아래로 이동
 
     $.ajax({
         url: '/predict',        // Flask 라우트 경로로 변경
@@ -15,6 +15,7 @@ function send() {
         dataType: 'json',
         data: JSON.stringify({user_input: userInput}),      // JSON 문자열로 변환
         success: function(data) {
+            $('#divbox').append('<div class="msg_box icon"><img src="../static/images/chatbot_icon.png" width="30" height="30"></div>');
             $('#divbox').append('<div class="msg_box receive"><span>'+ data.response +'</span></div>');     // 서버로부터 받은 응답 표시
             $("#divbox").scrollTop($("#divbox")[0].scrollHeight);       // 스크롤 아래로 이동
             $('#btn_send').attr('disabled', false)        // 입력 버튼 활성화

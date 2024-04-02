@@ -31,9 +31,9 @@ def chat():
 def predict():
     data = request.get_json()  # JSON 데이터로부터 user_input 추출
     question = data['user_input']
-    logfile.write(question + "\n")
+    logfile.write("User: " + question + "\n")
     response = KoGPT2.generate_response(question, KoGPT2.model, KoGPT2.tokenizer)
-    logfile.write(response + "\n")
+    logfile.write("Bot: " + response + "\n")
     logfile.flush()
     return jsonify({"response": response})
 

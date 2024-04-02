@@ -2,14 +2,14 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>심리대화치료 챗봇</title>
+    <title>Frieden</title>
     <script src="https://code.jquery.com/jquery-latest.min.js"></script>
     <link href="../static/css/chat.css" rel="stylesheet" type="text/css">
 </head>
 <body>
     <!--
     <div class="chat_header">
-        <span>심리대화치료 챗봇</span>
+        <span>Frieden</span>
         <button type="button" id="close_chat_btn" class="close_btn">X</button>
     </div>
     -->
@@ -22,6 +22,9 @@
         <input type="text" name="user_input" class="chat_input" id="input" size="80" style="display: inline;" />
         <input type="button" value="음성" id="btn_voice" class="btn" style="display: inline; width: 50px" />
         <input type="button" value="입력" id="btn_send" class="btn" style="display: inline; width: 50px" />
+        <a href="../logs/log.txt" download="Frieden.txt">
+            <input type="button" value="대화 로그 저장" id="btn_log" class="btn" />
+        </a>
     </form>
 
     <div id="popup_layer" class="popup_layer">
