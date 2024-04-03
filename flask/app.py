@@ -14,6 +14,9 @@ app = Flask(__name__)
 HOST = "0.0.0.0"
 PORT = "5000"
 
+MAXLEN = 512
+QA = []
+
 logfile = open("./logs/log.txt", "w")
 
 # 초기 화면 인터페이스 연결
@@ -30,12 +33,34 @@ def chat():
 @app.route('/predict', methods=['GET', 'POST'])
 def predict():
     data = request.get_json()  # JSON 데이터로부터 user_input 추출
-    question = data['user_input']
-    logfile.write("User: " + question + "\n")
+    question = ""
+    question += getInput(data['user_input'])
     response = KoGPT2.generate_response(question, KoGPT2.model, KoGPT2.tokenizer)
-    logfile.write("Bot: " + response + "\n")
-    logfile.flush()
+    QA.append(data['user_input'])
+    QA.append(response)
+    logging(data['user_input'], response)
     return jsonify({"response": response})
+
+# 멀티턴 입력 텍스트 만들기
+def getInput(input):
+    cntQA = len(QA)
+    if(cntQA > 0):
+        for i in range(cntQA):
+            ret = ""
+            for j in range(i, cntQA):
+                ret += QA[j]
+            ret += input
+            if len(ret) < MAXLEN:
+                if(cntQA == 8):
+                    del QA[:2]
+                return ret
+    return input
+
+# 로그 작성
+def logging(input, response):
+    logfile.write("User: " + input + "\n")
+    logfile.write("Frieden: " + response + "\n")
+    logfile.flush()
 
 # 음성 인식
 @app.route("/voice", methods=["GET", "POST"])
@@ -56,6 +81,7 @@ def voiceRecognition():
     except sr.RequestError as e:
         print("인식에 문제가 있습니다.", e)
 
+# main
 if __name__ == '__main__':
     app.run(host = HOST, port = PORT, debug = True)
     # atexit.register(close)
