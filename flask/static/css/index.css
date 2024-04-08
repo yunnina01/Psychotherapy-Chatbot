@@ -1,13 +1,13 @@
 /* 배경 */
 body {
-    background-color: whitesmoke;
+    background-image: linear-gradient(90deg, yellowgreen 40%, whitesmoke 50%);
 }
 
 /* 챗봇 이름 */
 .bot_name {
-    position: relative;
-    left: 41%;
-    align-items: center; margin-top: 200px;
+    position: fixed;
+    left: 66%;
+    align-items: center; margin-top: 150px;
     display: flex;
 }
 .bot_name img {
@@ -15,19 +15,23 @@ body {
 }
 .bot_name p {
     color: skyblue;
-    font-size: 50px; font-weight: 500;
+    font-size: 50px; font-weight: 1000;
     margin-left: 20px;
 }
 
 /* 챗봇 설명 */
 .bot_introduce {
-    font-size: 25px; font-weight: 400;
-    text-align: center; margin-top: -10px;
+    position: fixed;
+    top: 40%; left: 8%;
+    font-size: 25px; font-weight: 700;
+    text-align: center;
 }
 
 /* 버튼 위치 */
 .btn_pos {
-    text-align: center; margin-top: 150px;
+    position: fixed;
+    top: 65%; left: 72%;
+    text-align: center;
 }
 
 /* 버튼 */
@@ -45,7 +49,9 @@ body {
 
 /* 주의사항 */
 .caption_box {
-    text-align: center; top: 250px;
+    position: fixed;
+    top: 65%; left: 72%;
+    text-align: center;
     display: none;
 }
 

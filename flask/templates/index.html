@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
     <meta charset="UTF-8">
     <title>Frieden</title>
@@ -8,15 +8,19 @@
 </head>
 <body>
     <div class="bot_name">
-        <img src="../static/images/chatbot_icon.png">
+        <img src="../static/images/chatbot_icon.jpg">
         <p>Frieden</p>
+        <div class="btn_pos">
+            <input type="button" id="btn_start" class="btn" value="시작하기" style="background-color: blue;" />
+        </div>
+        <div id="caption" class="caption_box">
+            <input type="button" id="btn_chat" class="btn" value="대화시작" style="background-color: blueviolet;" />
+        </div>
     </div>
-    <p class="bot_introduce">편안한 대화를 나눠보세요</p>
-    <div class="btn_pos">
-        <input type="button" id="btn_start" class="btn" value="시작하기" style="background-color: blue;" />
-    </div>
-    <div id="caption" class="caption_box">
-        <input type="button" id="btn_chat" class="btn" value="대화시작" style="background-color: blueviolet;" />
+    <div class="bot_introduce">
+        <p>안녕하세요.</p>
+        <p>심리대화치료 AI Frieden입니다.</p>
+        <p>Frieden과 편안한 대화를 나눠보세요.</p>
     </div>
 
     <div id="popup_layer" class="popup_layer">

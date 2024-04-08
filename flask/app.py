@@ -17,7 +17,7 @@ PORT = "5000"
 MAXLEN = 512
 QA = []
 
-logfile = open("./logs/log.txt", "w")
+# logfile = open("./logs/log.txt", "w")
 
 # 초기 화면 인터페이스 연결
 @app.route("/")
@@ -38,7 +38,7 @@ def predict():
     response = KoGPT2.generate_response(question, KoGPT2.model, KoGPT2.tokenizer)
     QA.append(data['user_input'])
     QA.append(response)
-    logging(data['user_input'], response)
+    # logging(data['user_input'], response)
     return jsonify({"response": response})
 
 # 멀티턴 입력 텍스트 만들기
@@ -48,7 +48,7 @@ def getInput(input):
         for i in range(cntQA):
             ret = ""
             for j in range(i, cntQA):
-                ret += QA[j]
+                ret += QA[j] + "\t"     # ABABABABA 사이 탭
             ret += input
             if len(ret) < MAXLEN:
                 if(cntQA == 8):
@@ -57,10 +57,10 @@ def getInput(input):
     return input
 
 # 로그 작성
-def logging(input, response):
-    logfile.write("User: " + input + "\n")
-    logfile.write("Frieden: " + response + "\n")
-    logfile.flush()
+# def logging(input, response):
+    # logfile.write("User: " + input + "\n")
+    # logfile.write("Frieden: " + response + "\n")
+    # logfile.flush()
 
 # 음성 인식
 @app.route("/voice", methods=["GET", "POST"])

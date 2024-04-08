@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
     <meta charset="UTF-8">
     <title>Frieden</title>
@@ -14,18 +14,68 @@
     </div>
     -->
 
-    <div id="divbox" class="chat_content" style="float: left"></div>
-    <p>상담 지원 센터나 전화번호 등</p>
-    <div style="clear: both;"></div>
+    <div id="divbox" class="chat_content">
+        <div class="msg_box icon">
+            <img src="../static/images/chatbot_icon.jpg" width="30" height="30">
+        </div>
+        <div class="msg_box receive">
+            <span>안녕하세요. 심리대화치료 AI Frieden입니다. 무엇을 도와드릴까요?</span>
+        </div>
+    </div>
 
     <form id="form" style="display: inline">
         <input type="text" name="user_input" class="chat_input" id="input" size="80" style="display: inline;" />
         <input type="button" value="음성" id="btn_voice" class="btn" style="display: inline; width: 50px" />
         <input type="button" value="입력" id="btn_send" class="btn" style="display: inline; width: 50px" />
-        <a href="../logs/log.txt" download="Frieden.txt">
-            <input type="button" value="대화 로그 저장" id="btn_log" class="btn" />
-        </a>
+        <!--<input type="button" value="대화 내용 출력" id="btn_log" class="btn" />-->
     </form>
+
+    <div class="institute" style="top: 3%; left: 60%;">
+        <h3>상담 전화</h3>
+        <p>· 자살예방상담전화 - 109</p>
+        <p>· 정신건강 위기상담전화 - 1577-0199, 129</p>
+        <p>· 청소년상담 전화 - 1388</p>
+        <p>· 한국성폭력상담소 - 02-338-5801</p>
+        <p>· 대한법률구조공단 - 132</p>
+        <p>· 한국 가정법률 상담소 - 132</p>
+        <p>· 여성, 아동, 청소년 경찰지원센터 - 117</p>
+    </div>
+    <div class="institute" style="top: 3%; left: 85%;">
+        <h3>심리 상담</h3>
+        <a href="https://www.mykpcc.com/" target="_blank">
+            <img src="../static/images/institute1.jpg" alt="한국심리상담센터">
+        </a>
+        <h3>자살예방</h3>
+        <a href="https://www.kfsp.or.kr/home/kor/main.do" target="_blank">
+            <img src="../static/images/institute2.jpg" alt="한국생명존중희망재단">
+        </a>
+        <h3>트라우마</h3>
+        <a href="https://www.nct.go.kr" target="_blank">
+            <img src="../static/images/institute3.jpg" alt="국가트라우마센터">
+        </a>
+        <h3>청소년 상담</h3>
+        <a href="https://www.cyber1388.kr:447" target="_blank">
+            <img src="../static/images/institute4.jpg" alt="사이버1388 청소년상담센터">
+        </a>
+        <a href="https://www.kyci.or.kr/userSite/index.asp" target="_blank">
+            <img src="../static/images/institute5.jpg" alt="한국청소년상담복지개발원">
+        </a>
+        <h3>가족</h3>
+        <a href="https://www.kihf.or.kr/web/index.do" target="_blank">
+            <img src="../static/images/institute6.jpg" alt="한국건강가정진흥원">
+        </a>
+        <a href="https://www.familynet.or.kr/web/index.do" target="_blank">
+            <img src="../static/images/institute7.jpg" alt="가족센터">
+        </a>
+    </div>
+    <!--
+    <div class="institute" style="top: 33%; left: 60%;">
+        <h3>경남 지역 관련 사이트</h3>
+        <p>· <a href="https://www.gnmhc.or.kr/main/main.php">경상남도광역정신건강복지센터</a></p>
+        <p>· <a href="http://www.minddandi.or.kr/main/main.php">청년마음단디 경남청년마음건강</a></p>
+        <p>· <a href="http://gnaddiction.or.kr/main/main.php">경남지역중독협의체</a></p>
+    </div>
+    -->
 
     <div id="popup_layer" class="popup_layer">
         <div id="popup_voice" class="popup_box" style="width: 300px; height: 200px;">
