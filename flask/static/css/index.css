@@ -47,14 +47,6 @@ body {
     box-shadow: none;
 }
 
-/* 주의사항 */
-.caption_box {
-    position: fixed;
-    top: 65%; left: 72%;
-    text-align: center;
-    display: none;
-}
-
 /* 팝업 레이어 */
 .popup_layer {
     background-color: rgba(0, 0, 0, 0.4);
