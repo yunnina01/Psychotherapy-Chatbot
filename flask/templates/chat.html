@@ -14,15 +14,17 @@
     </div>
     -->
 
+    <!--대화 내용-->
     <div id="divbox" class="chat_content">
         <div class="msg_box icon">
             <img src="../static/images/chatbot_icon.jpg" width="30" height="30">
         </div>
         <div class="msg_box receive">
-            <span>안녕하세요. 심리대화치료 AI Frieden입니다. 무엇을 도와드릴까요?</span>
+            <span>안녕하세요. 저는 심리치료 대화 AI Frieden입니다. 무엇을 도와드릴까요?</span>
         </div>
     </div>
 
+    <!--사용자 입력-->
     <form id="form" style="display: inline">
         <input type="text" name="user_input" class="chat_input" id="input" size="80" style="display: inline;" />
         <input type="button" value="음성" id="btn_voice" class="btn" style="display: inline; width: 50px" />
@@ -30,6 +32,7 @@
         <!--<input type="button" value="대화 내용 출력" id="btn_log" class="btn" />-->
     </form>
 
+    <!--상담 전화-->
     <div class="institute" style="top: 3%; left: 60%;">
         <h3>상담 전화</h3>
         <p>· 자살예방상담전화 - 109</p>
@@ -40,6 +43,8 @@
         <p>· 한국 가정법률 상담소 - 132</p>
         <p>· 여성, 아동, 청소년 경찰지원센터 - 117</p>
     </div>
+
+    <!--관련 사이트-->
     <div class="institute" style="top: 3%; left: 85%;">
         <h3>심리 상담</h3>
         <a href="https://www.mykpcc.com/" target="_blank">
@@ -77,13 +82,17 @@
     </div>
     -->
 
+    <!--음성 인식 팝업-->
     <div id="popup_layer" class="popup_layer">
+        <!--음성 인식 중 팝업-->
         <div id="popup_voice" class="popup_box" style="width: 300px; height: 200px;">
             <div class="popup_content">
                 <h2>음성 인식 중</h2>
                 <p>말씀해 주세요.</p>
             </div>
         </div>
+
+        <!--음성 인식 오류 팝업-->
         <div id="popup_error" class="popup_box" style="width: 400px; height: 235px;">
             <div class="popup_btn">
                 <input type="button" id="popup_close" value="X" />
