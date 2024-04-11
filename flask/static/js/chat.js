@@ -50,7 +50,6 @@ function voice() {
         error: function(xhr, status, error) {
             $('#popup_voice').hide();                                                       // 음성 인식 중 팝업 숨기기
             $('#popup_error').show();                                                       // 음성 인식 오류 팝업 보이기
-            $('#btn_voice').attr('disabled', false);                                        // 음성 버튼 활성화
             console.error("Error: " + error);
             console.error("Status: " + status);
         }
@@ -61,6 +60,7 @@ function voice() {
 $('#popup_close').click(function() {
     $('#popup_error').hide();                                                               // 음성 인식 오류 팝업 숨기기
     $('#popup_layer').hide();                                                               // 음성 인식 팝업 레이어 숨기기
+    $('#btn_voice').attr('disabled', false);                                                // 음성 버튼 활성화
 });
 
 /*

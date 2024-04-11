@@ -32,14 +32,17 @@ def chat():
 # model 예측
 @app.route('/predict', methods=['GET', 'POST'])
 def predict():
-    data = request.get_json()                                                       # JSON 데이터로부터 사용자 입력 추출
-    question = ""
-    question += getInput(data['user_input'])                                        # 멀티턴 입력 생성
-    response = KoGPT2.generate_response(question, KoGPT2.model, KoGPT2.tokenizer)   # 모델 응답
-    QA.append(data['user_input'])                                                   # 멀티턴 데이터 리스트에 사용자 입력 삽입
-    QA.append(response)                                                             # 멀티턴 데이터 리스트에 모델 응답 삽입
-    # logging(data['user_input'], response)
-    return jsonify({"response": response})                                          # JSON 형태로 모델 응답 반환
+    data = request.get_json()                                                           # JSON 데이터로부터 사용자 입력 추출
+    if(len(data['user_input']) < 5):                                                    # 글자 수 제한 (5글자 이상)
+        response = "더 원할한 대화를 위해 5글자 이상 입력해주세요."
+    else:
+        question = ""
+        question += getInput(data['user_input'])                                        # 멀티턴 입력 생성
+        response = KoGPT2.generate_response(question, KoGPT2.model, KoGPT2.tokenizer)   # 모델 응답
+        QA.append(data['user_input'])                                                   # 멀티턴 데이터 리스트에 사용자 입력 삽입
+        QA.append(response)                                                             # 멀티턴 데이터 리스트에 모델 응답 삽입
+        # logging(data['user_input'], response)
+    return jsonify({"response": response})                                              # JSON 형태로 모델 응답 반환
 
 # 멀티턴 입력 텍스트 만들기 (ABABABABA 형식)
 def getInput(input):
@@ -48,13 +51,13 @@ def getInput(input):
         for i in range(cntQA):
             ret = ""
             for j in range(i, cntQA):
-                ret += QA[j] + "\t"                                                 # ABABABABA 사이 탭
+                ret += QA[j]                                                            # ABABABABA 생성
             ret += input
-            if len(ret) < MAXLEN:                                                   # 사용자 입력으로 가능한 최대 길이와 비교
-                if(cntQA == 8):                                                     # QA 리스트가 8개면 제일 먼저 들어온 2개의 QA 삭제
+            if len(ret) < MAXLEN:                                                       # 사용자 입력으로 가능한 최대 길이와 비교
+                if(cntQA == 8):                                                         # QA 리스트가 8개면 제일 먼저 들어온 2개의 QA 삭제
                     del QA[:2]
                 return ret
-    return input                                                                    # QA 리스트가 비었으면(첫 입력) 그대로 반환
+    return input                                                                        # QA 리스트가 비었으면(첫 입력) 그대로 반환
 
 # 로그 작성
 # def logging(input, response):
