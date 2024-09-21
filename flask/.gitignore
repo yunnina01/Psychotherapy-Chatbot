@@ -1,0 +1,14 @@
+/__pycache__
+/chatmodel/__pycache__
+/Share
+
+# 가상 환경 구성
+/Lib
+/Scripts
+pyvenv.cfg
+
+# ChatBot Model
+KoGPT2_Mul.pt
+
+# Log 파일
+/logs

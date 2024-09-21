@@ -32,10 +32,10 @@ function send() {
 // 음성 버튼 클릭 시 동작
 $('#btn_voice').click(function() {
     $(this).attr('disabled', true);                                                         // 음성인식 중 음성 버튼 비활성화
-    setTimeout(function() {                                                                 // 음성인식 팝업 0.4초 지연 실행
+    setTimeout(function() {                                                                 // 음성인식 팝업 0.5초 지연 실행
         $('#popup_layer').show();                                                           // 음성인식 팝업 레이어 보이기
         $('#popup_voice').show();                                                           // 음성인식 중 팝업 보이기
-    }, 400);
+    }, 500);
     voice();                                                                                // 음성 인식
 });
 function voice() {

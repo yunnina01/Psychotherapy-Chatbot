@@ -1,10 +1,4 @@
 # Psychotherapy-Chatbot
 
-python == 3.11.1
-pip == 22.3.1
-Flask == 3.0.2
-torch == 2.2.0
-transformers == 4.37.2
-pipwin == 0.5.2
-pyaudio == 0.2.11
-SpeechRecognition == 3.10.1
+졸업 작품으로 진행한 심리대화치료 챗봇 Frieden 입니다.  
+PyTorch를 통해 KoGPT2 모델을 학습시켰으며, 음성 인식 기능을 추가한 웹 서비스 챗봇입니다.
